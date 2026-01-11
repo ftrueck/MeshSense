@@ -332,7 +332,7 @@ export async function connect(address?: string) {
     let packet: MeshPacket
     packet = packets.upsert({ id: message.id, message })
     let node = getNodeById(packet.from)
-    if (packet?.viaMqtt === false) sendToMeshMap({ num: message.from }, node, packet)
+    if (packet?.viaMqtt === false && node.user) sendToMeshMap({ num: message.from }, node, packet)
   })
 
   /** TELEMETRY_APP */
